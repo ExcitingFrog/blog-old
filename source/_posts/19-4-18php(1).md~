@@ -1,0 +1,98 @@
+---
+title: 19-4-18 php(1) 
+date: 2019-12-24 18:28:59
+tags: 
+- 2019
+- php
+---
+
+
+###基本
+php 像jquery一样用$代表一个容器，变量储存于此
+```php
+  <?php
+  $x = 5;
+  echo $x;
+  echo "123",$x;
+  $arrayName = array("a","b","c");
+  echo "123{arrayName[0]}";//这里必须" "
+  print("<br>123");//括号可加可不加
+  print_r($arrayName);
+  $y = 0.15;//php会自己读取数据类型
+  var_dump($y);
+  define("TRIGGER","Exciting",true);//最后一个true表示大小写不敏感，下面的引用就可以忽视大小写
+  echo Trigger;
+  $txt1 = "abc";
+  $txt2 = "def";
+  echo $txt1.$txt2;//用 . 来连接
+  // == 和 ===使用与js一样
+  $arrayName = array('ma' =>"100", 'liu'=>"50");//关联数组
+  echo $arrayName['ma'];
+  foreach ($arrayName as $x => $x_value) {
+    echo "key=".$x," value=".$x_value."<br>";// code...
+  }
+  //可以利用sort()来升排序,rsort()来降排序,asort(),arsort()根据值，ksort(),krsort()降排序
+  //php还有很多超级全局变量，在脚本全部作用域都能用
+  $gl = 35;
+  function glk(){
+    $GLOBALS['glk'] = $GLOBALS['gl'];
+  }
+  glk();
+  echo $glk;//这种尽量不用
+  //还有很多类型比如 $_SERVER,$_GET......
+  echo $_SERVER['PHP_SELF']//当前脚本地址
+
+  //php有很多自带的常量，被称为魔术常量例如__LINE__ __FUNCTION__等等
+  function text(){
+    echo __FUNCTION__;
+  }
+
+  //默认情况下 代码都存在在全局空间下 但是可以自己创建
+  declare(encoding='UTF-8');//只有这个代码能出现在namespace前
+  namespace project1;
+    function pt(){
+      echo "123";
+    }
+  //namespace project\foo;//分层次的命名空间
+  namespace project2;
+    function pt(){
+      echo "234";
+    }
+
+  pt();//234
+  \project1\pt(); //123 前面必须加\
+  use project1 as p1;//接着就可以使用此命名空间里的内容
+  p1\pt();//123  前面不需要加\
+  //
+
+   class example{
+      var $xu;      
+      function gnum($par){
+        $this->xu = $par;
+      }
+      function pt(){
+        echo $this->xu;
+      }
+   }
+    $test = new example;
+    $test->gnum(5);
+    $test->pt();
+  //__construct()和__destruct()在生命周期开始和结束时生效
+  class example{
+    function __construct($par){
+      $this->x = $par;
+      echo $this->x;
+    }
+    function __destruct(){
+      echo "abc";
+    }
+  }
+  $foo = new example(20);
+  //继承
+  class 2nd_example extends example{
+    //可以重写父类的方法
+  }
+    ?>
+```
+
+### 表单
