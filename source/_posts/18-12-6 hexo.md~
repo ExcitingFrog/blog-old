@@ -8,16 +8,18 @@ tags:
 
 看文档很方便，我这里讲一些重点
 > https://hexo.io/zh-cn/docs/
-<!-- more-->
+
 ### 前期准备
 - 会使用git
 - 有github账户
 - nodejs环境
 
+<!-- more-->
+
 #### 使用git
 <br>
 这个应该是基本功，这里不做过多的介绍，不会的可以去看<br>
-[Git教程 - 廖雪峰](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+[Git教程廖雪峰](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
 #### 有github帐号并且已经关联主机
 <br>
