@@ -1,0 +1,45 @@
+---
+title: 19-3-9 burp
+date: 2020-03-07 15:08:19
+tags:
+- burp
+- 2019
+---
+抓包工具其实蛮多的，甚至浏览器自带的也够用。但是burp很多功能对于测试漏洞还是蛮有用的。
+<!-- more-->
+### burp
+#### 配置
+burp使用需要先配置，在proxy的options里面默认监听是本地的8080端口，当然你也可以自己修改和添加。
+接着在浏览器配置，配置代理，把监听的端口地址填入，也就是浏览器的流量都会经过burp，burp可以对数据包修改等操作。
+接着访问http://burp 在右上角有CA证书下载，下载后添加到浏览器证书管理里，否则你用浏览器访问网址会显示不安全，因为没有CA证书。
+
+tips:
+- 为了方便一边使用burp一边浏览网页摸鱼，我用了两个浏览器
+- option里面可以把intercept server responses也打开 就可以拦截response包了
+
+#### 拦截
+在proxy中的intercept里 intercept on/off 可以切换是否拦截流量。
+打开了拦截之后，就可以修改后点forward发送了，所有发送历史都存在http history里面，可以之后仔细查看。
+
+#### intruder
+在http history里面的数据包右键可以发送到intruder里面，通过多次发送来实现一些暴力破解的流程。
+positions里面设置需要修改的内容的位置，§符号之间的就是，可以清除和添加任意位置（sniper是单点，比如确定用户名，多次尝试密码。cluster bomb是多点，多次尝试不同用户名匹配不同的密码）
+payloads里面设置修改的内容，payload type里的simple list是普通的队列，可以手动添加，也可以通过文件添加，非常方便。numbers就是数字队列......
+还有其他很多内容，建议去看官方的文档，或者别人做的教程。
+
+[Burp Suite 实战指南](https://t0data.gitbooks.io/burpsuite/content/)
+
+#### repeater
+数据包发送到这里之后就可以比较方便的查看request包修改的内容和response返回的内容
+
+#### target
+target里面有浏览过的网站的资源结构。
+
+#### dashboard
+可以扫描某一url所存在的网页漏洞。
+
+#### extender
+里面可以添加自己写的扩展内容，支持java跟python，也可以在里面的商店添加别人写的扩展。
+
+#### pkav http fuzzer
+一个小工具，可以识别一些简单的验证码，面对intruder无法处理的情况可以做很好的补充
